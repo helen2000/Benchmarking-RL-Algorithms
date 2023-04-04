@@ -1,0 +1,83 @@
+overall:
+  agent_name: "sac"
+  env_name: "LunarLander-v2"
+  context_capacity: 50000
+  checkpoint:
+    save:
+      enabled: true
+      every: 10
+    load:
+      enabled: false
+      use_latest_run: false
+      custom:
+        use_relative: true
+        path: models/
+  output:
+    verbose: false
+    render: false
+    save:
+      episodes: 20
+      csv: true
+      charts: true
+      raw: false
+      recordings: true
+  episodes:
+    max: 1000
+  timesteps:
+    episode_timesteps: 2000
+    max: 1000000000000000
+    start_training: 50
+agents:
+  random:
+    foo: "bar"
+  ddpg:
+    alpha: 0.000025
+    beta: 0.00025
+    gamma: 0.99
+    tau: 0.001
+    batch_size: 64
+    layer1_size: 400
+    layer2_size: 300
+  td3:
+    alpha: 0.001
+    beta: 0.001
+    gamma: 0.99
+    input_dims: [8]
+    tau: 0.005
+    noise: 0.1
+    batch_size: 64
+    layer1_size: 400
+    layer2_size: 300
+    n_actions: 2
+    max_size: 1000000
+  sac:
+    sample_size: 64
+    batch_size: 64
+    learning_rate: 0.001
+    alpha: 0.9
+    gamma: 0.99
+    scale: 2
+    tau: 0.005
+    nn_initial_weights: 0.0003
+    actor_noise: 0.000001
+    no_hidden_neurons: 256
+  dqn:
+    invert_done: false
+    learning_rate: 0.0003
+    batch_size: 64
+    hidden_layer_size: 128
+    update_count: 500
+    epsilon: 1.0
+    epsilon_decay: 0.0005
+    epsilon_min: 0.01
+    gamma: 0.999
+  sarsa:
+    gamma: 0.99
+    learning_rate: 0.05
+    epsilon: 1.0
+    batch_size: 64
+  deep_sarsa:
+    gamma: 0.99
+    learning_rate: 0.001
+    epsilon: 1.0
+    batch_size: 64
